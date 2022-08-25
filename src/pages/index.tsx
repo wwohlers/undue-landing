@@ -1,193 +1,193 @@
-import * as React from "react"
-import type { HeadFC } from "gatsby"
+import * as React from "react";
+import type { HeadFC, PageProps } from "gatsby";
+import { Layout } from "../components/Layout";
+import headerImage from "../images/screenshots/events_list.png";
+import appStore from "../images/app_store_button.png";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { IconType } from "react-icons";
+import { BsListNested } from "react-icons/bs";
+import { MdSpeed } from "react-icons/md";
+import view_week from "../images/screenshots/view_week.png";
+import dayify from "../images/screenshots/dayify.png";
+import set_reminder from "../images/screenshots/set_reminder.png";
 
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const doclistStyles = {
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-}
+const banner = {
+  image: headerImage,
+  header: (
+    <>
+      From <i>due</i> to <i>done</i>, without all the fuss.
+    </>
+  ),
+  text: (
+    <>
+      Because planning your life <b>shouldn't feel like a chore</b>.
+    </>
+  ),
+};
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
-
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  display: `inline-block`,
-  marginBottom: 24,
-  marginRight: 12,
-}
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-}
-
-const docLinks = [
+const columns = [
   {
-    text: "TypeScript Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/",
-    color: "#8954A8",
+    icon: AiOutlineClockCircle as IconType,
+    header: "Smart",
+    text: (
+      <>
+        Undue knows what you want to see, when you want to see it. It's an app
+        built for planners that don't have any time to waste.
+      </>
+    ),
   },
   {
-    text: "GraphQL Typegen Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/",
-    color: "#8954A8",
-  }
-]
+    icon: BsListNested as IconType,
+    header: "Simple",
+    text: (
+      <>
+        Your success depends on meeting tight deadlines and keeping track of
+        important events. Undue helps you do both &mdash; without the bloat of
+        other planning apps.
+      </>
+    ),
+  },
+  {
+    icon: MdSpeed as IconType,
+    header: "Fast",
+    text: (
+      <>
+        <b>15 seconds</b> &mdash; that's how short it should take to add
+        something to your calendar. Undue was designed around this number from
+        the very beginning.
+      </>
+    ),
+  },
+];
 
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative" as "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-}
+const sections = [
+  {
+    img: view_week,
+    header: "A calendar that thinks like you do",
+    paragraphs: [
+      <>
+        You plan in weeks, not months. Oh, and Sunday is part of your weekend,
+        not the start of the next week.
+      </>,
+      <>Undue will change the way you look at your personal calendar.</>,
+    ],
+  },
+  {
+    img: dayify,
+    header: "An app that (tries to) keep up with you",
+    paragraphs: [
+      <>
+        You think fast &mdash; and demand the same from the apps that you use
+        every day.
+      </>,
+      <>
+        That's why Undue has streamlined flows that make it mind-blowingly easy
+        to set dates for all the important things in life.
+      </>,
+    ],
+  },
+  {
+    img: set_reminder,
+    header: "Never miss a deadline again",
+    paragraphs: [
+      <>
+        Reminders help you stay on top of your plans while focusing on what's
+        important to you. With Undue, creating reminders for all the important
+        things in your life has never been easier.
+      </>,
+      <>
+        Oh, your event got pushed back? Don't worry &mdash; Undue will
+        automatically push back your reminders for you.
+      </>,
+    ],
+  },
+];
 
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
-]
-
-const IndexPage = () => {
+const IndexPage = ({ path, location }: PageProps) => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉</span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.tsx</code> to see this page
-        update in real-time. 😎
-      </p>
-      <ul style={doclistStyles}>
-        {docLinks.map(doc => (
-          <li key={doc.url} style={docLinkStyle}>
-            <a
-              style={linkStyle}
-              href={`${doc.url}?utm_source=starter&utm_medium=ts-docs&utm_campaign=minimal-starter-ts`}
-            >
-              {doc.text}
-            </a>
-          </li>
+    <Layout location={location}>
+      <div className="md:py-8 w-full flex justify-center items-start bg-slate-100">
+        <div className="container flex flex-col md:flex-row justify-between items-center">
+          <div className="my-8 md:pr-8">
+            <p className="text-5xl font-extralight">{banner.header}</p>
+            <p className="mt-8 md:mt-4 text-2xl font-light">{banner.text}</p>
+            <div className="mt-8 md:mt-4 md:mt-8 flex justify-center items-center">
+              <img
+                className="w-40 cursor-pointer"
+                src={appStore}
+                alt="Download on the app store"
+              />
+              <p className="text-slate-400 uppercase text-xs font-semibold ml-4">
+                Coming Soon To the Play Store
+              </p>
+            </div>
+          </div>
+          <img
+            className="my-4 md:my-0 w-80"
+            src={headerImage}
+            alt="Screenshot"
+          />
+        </div>
+      </div>
+      <div className="container py-8 flex flex-col md:flex-row md:justify-between">
+        {columns.map(({ icon, header, text }, index) => (
+          <Column key={index} icon={icon} header={header} text={text} />
         ))}
-      </ul>
-      <ul style={listStyles}>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter-ts`}
-              >
-                {link.text}
-              </a>
-              {link.badge && (
-                <span style={badgeStyle} aria-label="New Badge">
-                  NEW!
-                </span>
-              )}
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
-  )
-}
+      </div>
+      {sections.map(({ img, header, paragraphs }, index) => (
+        <Section
+          key={index}
+          img={img}
+          header={header}
+          paragraphs={paragraphs}
+          reverse={index % 2 === 0}
+        />
+      ))}
+    </Layout>
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home Page</title>
+const Column: React.FC<{
+  icon: IconType;
+  header: string;
+  text: React.ReactNode;
+}> = ({ icon: Icon, header, text }) => {
+  return (
+    <div className="w-full py-4 md:py-6 md:w-[30%] md:border-r border-slate-100 last:border-r-0">
+      <div className="flex items-center">
+        <Icon fontSize={24} />
+        <p className="text-2xl ml-2 font-light">{header}</p>
+      </div>
+      <p className="mt-2 text-md leading-snug">{text}</p>
+    </div>
+  );
+};
+
+const Section: React.FC<{
+  img: string;
+  header: string;
+  paragraphs: React.ReactNode[];
+  reverse: boolean;
+}> = ({ img, header, paragraphs, reverse }) => {
+  const reverseClass = reverse && "flex-row-reverse ";
+  const backgroundClass = reverse && "bg-slate-100 ";
+  return (
+    <div className={"w-full flex justify-center py-8 " + backgroundClass}>
+      <div
+        className={
+          "container flex justify-between items-center " + reverseClass
+        }
+      >
+        <div className="w-8/12">
+          <p className="text-3xl font-light mb-4">{header}</p>
+          {paragraphs.map((paragraph, index) => (
+            <p className="mb-3 text-lg leading-snug font-light">{paragraph}</p>
+          ))}
+        </div>
+        <img className="w-3/12" src={img} alt="Week view" />
+      </div>
+    </div>
+  );
+};

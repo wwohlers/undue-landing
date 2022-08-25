@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap');
+
+html {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #fafafa;
+  scroll-behavior: smooth;
+  @apply text-slate-700;
+}
+
+a {
+  @apply border-b;
+  @apply border-slate-300;
+  transition: all 300ms;
+}
+
+a:hover {
+  @apply border-slate-700;
+}
+
+.nav-menu > * {
+  @apply text-lg;
+  @apply ml-2;
+}
+
+.container {
+  @apply w-10/12;
+  @apply md:w-3/4;
+  max-width: 860px;
+}
