@@ -8,28 +8,39 @@ html {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  background-color: #fafafa;
+  @apply bg-slate-50;
   scroll-behavior: smooth;
   @apply text-slate-700;
 }
 
 a {
+  @apply text-slate-400;
+  @apply border-slate-400;
   @apply border-b;
-  @apply border-slate-300;
   transition: all 300ms;
 }
 
 a:hover {
+  @apply text-slate-800;
   @apply border-slate-700;
 }
 
 .nav-menu > * {
   @apply text-lg;
-  @apply ml-2;
+  @apply border-slate-50;
+}
+
+.nav-menu > *:hover {
+  @apply border-slate-50;
+}
+
+.nav-menu > .active {
+  @apply text-slate-700;
+  @apply border-slate-700;
 }
 
 .container {
   @apply w-10/12;
   @apply md:w-3/4;
-  max-width: 860px;
+  max-width: 900px;
 }

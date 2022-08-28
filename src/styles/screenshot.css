@@ -1,0 +1,58 @@
+.screenshot-container {
+  position: relative;
+  @apply bg-slate-800;
+  border-radius: 36px;
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.25);
+}
+
+.img {
+  @apply border-slate-800;
+  border-width: 10px;
+  border-radius: 36px;
+}
+
+.img.medium {
+  width: 240px;
+  border-width: 10px;
+}
+
+.img.large {
+  width: 280px;
+  border-width: 12px;
+}
+
+.img.small {
+  width: 200px;
+  border-width: 8px;
+}
+
+.notch {
+  width: 40%;
+  height: 30px;
+  @apply bg-slate-800;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.btn-left {
+  background-color: inherit;
+  position: absolute;
+  left: -2px;
+  width: 2px;
+  height: 40px;
+  border-radius: 2px 0 0 2px;
+}
+
+.btn-right {
+  background-color: inherit;
+  position: absolute;
+  right: -2px;
+  width: 2px;
+  height: 60px;
+  border-radius: 0 2px 2px 0;
+}
